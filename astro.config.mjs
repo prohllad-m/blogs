@@ -1,4 +1,4 @@
-import node from "@astrojs/node";
+import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
 import auditLog from "@emdash-cms/plugin-audit-log";
 import { defineConfig, fontProviders } from "astro/config";
@@ -14,8 +14,8 @@ if (typeof process.loadEnvFile === "function") {
 
 export default defineConfig({
 	output: "server",
-	adapter: node({
-		mode: "standalone",
+	adapter: cloudflare({
+		platformProxy: { enabled: true },
 	}),
 	image: {
 		layout: "constrained",
