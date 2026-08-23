@@ -5,12 +5,11 @@ import { defineConfig, fontProviders } from "astro/config";
 import emdash, { s3 } from "emdash/astro";
 import { postgres } from "emdash/db";
 
-// Load .env variables into process.env (Node.js 20.6+)
-if (typeof process.loadEnvFile === "function") {
-	try {
-		process.loadEnvFile();
-	} catch { }
-}
+// if (typeof process.loadEnvFile === "function") {
+// 	try {
+// 		process.loadEnvFile();
+// 	} catch { }
+// }
 
 export default defineConfig({
 	output: "server",
@@ -25,10 +24,7 @@ export default defineConfig({
 		react(),
 		emdash({
 			database: postgres({
-				connectionString: process.env.DATABASE_URL?.replace(
-					/pooler\.supabase\.com:5432/,
-					"pooler.supabase.com:6543"
-				),
+				connectionString: process.env.DATABASE_URL,
 				pool: {
 					max: 3,
 					min: 0,
@@ -64,4 +60,27 @@ export default defineConfig({
 	server: {
 		allowedHosts: true,
 	},
+	// 	vite: {
+	// 		plugins: [
+	// 			{
+	// 				// sanitize-html (used by emdash) imports postcss to parse CSS style
+	// 				// attributes at runtime. postcss is a Node.js build tool that uses
+	// 				// CJS require("fs"/"path"/"url") — which don't exist in Cloudflare
+	// 				// Workers. We stub postcss with a no-op so style attributes are
+	// 				// simply not CSS-validated (they are still sanitized by attribute
+	// 				// allowlists). sanitize-html already warns that style parsing "only
+	// 				// works in a node environment" and gracefully catches parse errors.
+	// 				name: "stub-postcss-for-cloudflare",
+	// 				resolveId(id) {
+	// 					if (id === "postcss") return "\0postcss-stub";
+	// 				},
+	// 				load(id) {
+	// 					if (id === "\0postcss-stub") {
+	// 						return `export function parse() { return { nodes: [] }; }
+	// export default { parse() { return { nodes: [] }; } };`;
+	// 					}
+	// 				},
+	// 			},	
+	// 		],
+	// 	},
 });

@@ -19,6 +19,7 @@
     "@astrojs/react": "^6.0.4",
     "@aws-sdk/client-s3": "^3.1116.0",
     "@aws-sdk/s3-request-presigner": "^3.1116.0",
+    "@emdash-cms/cloudflare": "^0.34.0",
     "@emdash-cms/plugin-audit-log": "^0.2.0",
     "astro": "^7.2.4",
     "better-sqlite3": "^12.11.1",
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@biomejs/biome": "^2.5.10",
     "pagefind": "^1.5.2",
     "wrangler": "^4.125.0"
   },
