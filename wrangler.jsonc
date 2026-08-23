@@ -1,7 +1,6 @@
 {
     "name": "blogs",
     "compatibility_date": "2026-08-20",
-    // nodejs_compat enables Node.js APIs (net, crypto, etc.) needed by pg (node-postgres)
     "compatibility_flags": [
         "nodejs_compat",
         "no_handle_cross_request_promise_resolution"
@@ -9,9 +8,8 @@
     "assets": {
         "directory": "./dist/client"
     },
-    "workers_dev": true,
     "observability": {
-        "enabled": true,
+        "enabled": false,
         "head_sampling_rate": 1
     }
 }
