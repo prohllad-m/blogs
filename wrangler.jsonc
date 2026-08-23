@@ -1,5 +1,5 @@
 {
-    "name": "blog",
+    "name": "blogs",
     "compatibility_date": "2026-08-20",
     // nodejs_compat enables Node.js APIs (net, crypto, etc.) needed by pg (node-postgres)
     "compatibility_flags": [
