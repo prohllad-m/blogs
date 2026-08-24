@@ -106,12 +106,12 @@ const publishDate =
 <Base
 	title={seo.title}
 	pageTitle={seo.ogTitle}
-	description={seo.description}
-	image={seo.ogImage}
-	canonical={seo.canonical}
-	robots={seo.robots}
+	description={seo.description || ""}
+	image={seo.ogImage || ""}
+	canonical={seo.canonical || ""}
+	robots={seo.robots || ""}
 	type="article"
-	publishedTime={post.data.publishedAt?.toISOString() ?? null}
+	publishedTime={post.data.publishedAt?.toISOString() || ""}
 	modifiedTime={post.data.updatedAt.toISOString()}
 	content={{ collection: "posts", id: post.data.id, slug }}
 >
@@ -134,7 +134,9 @@ const publishDate =
 						bylines.length > 0 && (
 							<div class="meta-block byline-block">
 								<span class="meta-label">
-									{bylines.length === 1 ? "Author" : "Authors"}
+									{bylines.length === 1
+										? "Author"
+										: "Authors"}
 								</span>
 								<div class="bylines">
 									{bylines.map((credit) => (
@@ -142,7 +144,10 @@ const publishDate =
 											{credit.byline.avatarMediaId && (
 												<img
 													src={`/_emdash/api/media/file/${credit.byline.avatarMediaId}`}
-													alt={credit.byline.displayName}
+													alt={
+														credit.byline
+															.displayName
+													}
 													class="byline-avatar"
 												/>
 											)}
@@ -151,7 +156,9 @@ const publishDate =
 													{credit.byline.displayName}
 												</span>
 												{credit.roleLabel && (
-													<span class="byline-role">{credit.roleLabel}</span>
+													<span class="byline-role">
+														{credit.roleLabel}
+													</span>
 												)}
 											</div>
 										</div>
@@ -178,7 +185,10 @@ const publishDate =
 								<span class="meta-label">Tags</span>
 								<div class="meta-tags">
 									{tags.map((t) => (
-										<a href={`/tag/${t.slug}`} class="meta-tag">
+										<a
+											href={`/tag/${t.slug}`}
+											class="meta-tag"
+										>
 											{t.label}
 										</a>
 									))}
@@ -218,10 +228,14 @@ const publishDate =
 						}
 						<span>{readingTime} min read</span>
 					</div>
-					<h1 class="article-title" {...post.edit.title}>{post.data.title}</h1>
+					<h1 class="article-title" {...post.edit.title}>
+						{post.data.title}
+					</h1>
 					{
 						post.data.excerpt && (
-							<p class="article-excerpt" {...post.edit.excerpt}>{post.data.excerpt}</p>
+							<p class="article-excerpt" {...post.edit.excerpt}>
+								{post.data.excerpt}
+							</p>
 						)
 					}
 				</header>
@@ -231,7 +245,11 @@ const publishDate =
 				</div>
 
 				<div class="article-comments">
-					<Comments collection="posts" contentId={post.data.id} threaded />
+					<Comments
+						collection="posts"
+						contentId={post.data.id}
+						threaded
+					/>
 					<CommentForm collection="posts" contentId={post.data.id} />
 				</div>
 			</div>
@@ -260,7 +278,11 @@ const publishDate =
 					<h2 class="more-title">Continue reading</h2>
 					<div class="more-grid">
 						{otherPostsWithTags.map(
-							({ post: p, tags: postTags, bylines: postBylines }) => (
+							({
+								post: p,
+								tags: postTags,
+								bylines: postBylines,
+							}) => (
 								<PostCard
 									title={p.data.title}
 									excerpt={p.data.excerpt}
@@ -268,10 +290,13 @@ const publishDate =
 									href={`/posts/${p.id}`}
 									date={p.data.publishedAt ?? undefined}
 									readingTime={getReadingTime(p.data.content)}
-									tags={postTags.map((t) => ({ slug: t.slug, label: t.label }))}
+									tags={postTags.map((t) => ({
+										slug: t.slug,
+										label: t.label,
+									}))}
 									bylines={postBylines}
 								/>
-							)
+							),
 						)}
 					</div>
 				</div>
@@ -289,7 +314,9 @@ const publishDate =
 			const headings = content.querySelectorAll("h2, h3");
 			if (headings.length === 0) {
 				// Hide TOC if no headings
-				const toc = document.querySelector(".toc") as HTMLElement | null;
+				const toc = document.querySelector(
+					".toc",
+				) as HTMLElement | null;
 				if (toc) toc.style.display = "none";
 				return;
 			}
@@ -305,7 +332,9 @@ const publishDate =
 
 				const li = document.createElement("li");
 				li.className =
-					heading.tagName === "H3" ? "toc-item toc-item--nested" : "toc-item";
+					heading.tagName === "H3"
+						? "toc-item toc-item--nested"
+						: "toc-item";
 
 				const link = document.createElement("a");
 				link.href = `#${heading.id}`;
@@ -323,18 +352,22 @@ const publishDate =
 				(entries) => {
 					entries.forEach((entry) => {
 						const id = entry.target.id;
-						const link = tocContainer.querySelector(`a[href="#${id}"]`);
+						const link = tocContainer.querySelector(
+							`a[href="#${id}"]`,
+						);
 						if (link) {
 							if (entry.isIntersecting) {
 								tocContainer
 									.querySelectorAll(".toc-link")
-									.forEach((l) => l.classList.remove("active"));
+									.forEach((l) =>
+										l.classList.remove("active"),
+									);
 								link.classList.add("active");
 							}
 						}
 					});
 				},
-				{ rootMargin: "-80px 0px -80% 0px" }
+				{ rootMargin: "-80px 0px -80% 0px" },
 			);
 
 			headings.forEach((heading) => observer.observe(heading));

@@ -6,10 +6,6 @@ import Base from "../layouts/Base.astro";
 
 const query = Astro.url.searchParams.get("q")?.trim() || "";
 
-// Use the FTS-backed search() API instead of loading every post and
-// filtering in JS. FTS scales as the post count grows, returns ranked
-// results, and handles tokenization/stemming. Templates that grep all
-// post bodies in JS quickly become unusable past a few hundred posts.
 const { items: results } = query
 	? await search(query, { collections: ["posts"], limit: 30 })
 	: { items: [] };
@@ -57,7 +53,10 @@ const { items: results } = query
 									{result.title ?? "Untitled"}
 								</h2>
 								{result.snippet && (
-									<p class="result-snippet" set:html={result.snippet} />
+									<p
+										class="result-snippet"
+										set:html={result.snippet}
+									/>
 								)}
 							</a>
 						</li>
@@ -66,7 +65,11 @@ const { items: results } = query
 			)
 		}
 
-		{!query && <p class="search-hint">Enter a search term to find posts.</p>}
+		{
+			!query && (
+				<p class="search-hint">Enter a search term to find posts.</p>
+			)
+		}
 	</section>
 </Base>
 
