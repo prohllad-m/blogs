@@ -1,11 +1,9 @@
-// import node from "@astrojs/node";
+import vercel from "@astrojs/vercel";
 import react from "@astrojs/react";
 import auditLog from "@emdash-cms/plugin-audit-log";
 import { defineConfig, fontProviders, memoryCache } from "astro/config";
 import emdash, { s3 } from "emdash/astro";
 import { postgres } from "emdash/db";
-import node from "@astrojs/node";
-// import tailwind from "@astrojs/tailwind";
 
 
 if (typeof process.loadEnvFile === "function") {
@@ -15,7 +13,6 @@ if (typeof process.loadEnvFile === "function") {
 }
 
 export default defineConfig({
-	outDir: "server",
 	output: "server",
 	image: {
 		layout: "constrained",
@@ -28,7 +25,6 @@ export default defineConfig({
 
 	integrations: [
 		react(),
-		// tailwind(),
 		emdash({
 			database: postgres({
 				connectionString: process.env.DATABASE_URL,
@@ -38,13 +34,7 @@ export default defineConfig({
 					min: 0,
 				},
 			}),
-			storage: s3({
-				endpoint: process.env.S3_ENDPOINT,
-				accessKeyId: process.env.S3_ACCESS_KEY_ID,
-				secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
-				bucket: process.env.S3_BUCKET || "blog",
-				region: process.env.S3_REGION || "ap-south-1",
-			}),
+			storage: s3(),
 		}),
 	],
 
@@ -67,13 +57,7 @@ export default defineConfig({
 
 	devToolbar: { enabled: false },
 
-	server: {
-		allowedHosts: [
-			"localhost"
-		],
-	},
-
-	adapter: node({
-		mode: "standalone"
-	})
+	adapter: vercel({
+		imageService: true,
+	}),
 });

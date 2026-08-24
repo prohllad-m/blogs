@@ -3,6 +3,7 @@ dist
 .astro
 uploads
 data.db
+.vercel
 
 # Environment
 .env

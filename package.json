@@ -11,13 +11,11 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "start": "astro start",
     "typecheck": "astro check"
   },
   "dependencies": {
-    "@astrojs/node": "^11.1.4",
     "@astrojs/react": "^6.0.4",
-    "@astrojs/tailwind": "^6.0.2",
+    "@astrojs/vercel": "^11.0.7",
     "@aws-sdk/client-s3": "^3.1116.0",
     "@aws-sdk/s3-request-presigner": "^3.1116.0",
     "@emdash-cms/plugin-audit-log": "^0.2.0",
@@ -29,7 +27,8 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@biomejs/biome": "^2.5.10",
-    "pagefind": "^1.5.2"
+    "pagefind": "^1.5.2",
+    "typescript": "^7.0.2"
   },
   "packageManager": "bun@1.4.0"
 }
