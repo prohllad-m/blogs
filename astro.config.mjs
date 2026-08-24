@@ -1,10 +1,12 @@
 // import node from "@astrojs/node";
 import react from "@astrojs/react";
 import auditLog from "@emdash-cms/plugin-audit-log";
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig, fontProviders, memoryCache } from "astro/config";
 import emdash, { s3 } from "emdash/astro";
 import { postgres } from "emdash/db";
 import node from "@astrojs/node";
+// import tailwind from "@astrojs/tailwind";
+
 
 if (typeof process.loadEnvFile === "function") {
 	try {
@@ -13,18 +15,24 @@ if (typeof process.loadEnvFile === "function") {
 }
 
 export default defineConfig({
-
+	outDir: "server",
 	output: "server",
 	image: {
 		layout: "constrained",
 		responsiveStyles: true,
 	},
+	cache: {
+		provider: memoryCache({ max: 500 }),
+	},
+
 
 	integrations: [
 		react(),
+		// tailwind(),
 		emdash({
 			database: postgres({
 				connectionString: process.env.DATABASE_URL,
+				ssl: { rejectUnauthorized: false },
 				pool: {
 					max: 3,
 					min: 0,

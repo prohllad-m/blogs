@@ -44,8 +44,10 @@
 
 		/* Typography */
 		--font-heading: var(--font-body);
-		--font-weight-heading: 600; /* h2-h6, card and list titles */
-		--font-weight-display: 700; /* h1 and large page titles */
+		--font-weight-heading: 600;
+		/* h2-h6, card and list titles */
+		--font-weight-display: 700;
+		/* h1 and large page titles */
 
 		/* Type scale */
 		--font-size-xs: 0.8125rem;
@@ -65,10 +67,14 @@
 		--leading-relaxed: 1.7;
 
 		/* Letter spacing */
-		--tracking-tight: -0.03em; /* h1 and large titles */
-		--tracking-snug: -0.02em; /* h2-h6, site/card titles */
-		--tracking-wide: 0.06em; /* meta labels, TOC/widget titles */
-		--tracking-wider: 0.08em; /* footer headings, section labels */
+		--tracking-tight: -0.03em;
+		/* h1 and large titles */
+		--tracking-snug: -0.02em;
+		/* h2-h6, site/card titles */
+		--tracking-wide: 0.06em;
+		/* meta labels, TOC/widget titles */
+		--tracking-wider: 0.08em;
+		/* footer headings, section labels */
 
 		/* Spacing */
 		--spacing-1: 0.25rem;
@@ -94,13 +100,19 @@
 		--spacing-3xl: var(--spacing-16);
 
 		/* Layout */
-		--content-width: 680px; /* article/page body column */
-		--wide-width: 1200px; /* max container (home, archives) */
+		--content-width: 680px;
+		/* article/page body column */
+		--wide-width: 1200px;
+		/* max container (home, archives) */
 		--max-width: var(--content-width);
-		--gutter-width: 200px; /* right sidebar column (TOC) on article pages */
-		--meta-col-width: 180px; /* left meta column on article pages */
-		--nav-height: 64px; /* sticky header height */
-		--search-input-width: 180px; /* nav search box width */
+		--gutter-width: 200px;
+		/* right sidebar column (TOC) on article pages */
+		--meta-col-width: 180px;
+		/* left meta column on article pages */
+		--nav-height: 64px;
+		/* sticky header height */
+		--search-input-width: 180px;
+		/* nav search box width */
 
 		/* Borders & radius */
 		--radius: 4px;
@@ -111,17 +123,22 @@
 		--transition-base: 180ms ease;
 
 		/* Avatars */
-		--avatar-size-xs: 18px; /* card byline avatars */
-		--avatar-size-sm: 20px; /* post list byline avatars */
-		--avatar-size-md: 24px; /* featured post byline avatars */
-		--avatar-size-lg: 32px; /* single post byline avatars */
+		--avatar-size-xs: 18px;
+		/* card byline avatars */
+		--avatar-size-sm: 20px;
+		/* post list byline avatars */
+		--avatar-size-md: 24px;
+		/* featured post byline avatars */
+		--avatar-size-lg: 32px;
+		/* single post byline avatars */
 
 		/* Shadows */
 		--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
 		--shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
 
 		/* Misc */
-		--tag-padding-y: 2px; /* vertical padding on tag pills */
+		--tag-padding-y: 2px;
+		/* vertical padding on tag pills */
 	}
 
 	/*
