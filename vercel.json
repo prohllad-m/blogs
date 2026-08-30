@@ -1,6 +1,14 @@
 {
-  "buildCommand": "bun run build",
-  "devCommand": "bun run dev",
-  "installCommand": "bun install",
-  "framework": "astro"
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "astro",
+  "functions": {
+    "dist/server/entry.mjs": {
+      "maxDuration": 60
+    }
+  },
+  "regions": [
+    "iad1"
+  ]
 }

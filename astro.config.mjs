@@ -63,5 +63,6 @@ export default defineConfig({
 
 	adapter: vercel({
 		imageService: true,
+		maxDuration: 60,
 	}),
 });

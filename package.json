@@ -30,5 +30,12 @@
     "pagefind": "^1.5.2",
     "typescript": "^7.0.2"
   },
-  "packageManager": "bun@1.4.0"
+  "packageManager": "bun@1.4.0",
+  "overrides": {
+    "htmlparser2": "10.1.0"
+  },
+  "resolutions": {
+    "htmlparser2": "10.1.0"
+  }
 }
+
