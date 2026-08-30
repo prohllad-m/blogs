@@ -14,6 +14,10 @@ if (typeof process.loadEnvFile === "function") {
 
 export default defineConfig({
 	output: "server",
+	session: {
+		driver: "fs-lite",
+		options: { base: "./.astro/session" },
+	},
 	image: {
 		layout: "constrained",
 		responsiveStyles: true,
